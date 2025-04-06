@@ -17,6 +17,8 @@ st.set_page_config(
     page_title = "Smart Resume Analyzer",
     page_icon='./Logo/SRA_Logo.ico',
 ) 
+st.title("✅ Smart Resume Analyzer is Live!")
+st.write("If you're seeing this, your Streamlit app is working fine.")
 import pytesseract # type: ignore
 from pdf2image import convert_from_path # type: ignore
 import email
