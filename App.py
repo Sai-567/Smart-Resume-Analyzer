@@ -3,22 +3,18 @@ import re
 import io
 import PyPDF2
 from sklearn.metrics import r2_score # type: ignore
-import spacy
-from spacy.cli import download
-try:
-    nlp = spacy.load("en_core_web_sm")
-except OSError:
-    print("Downloading spaCy model...")
-    download("en_core_web_sm")
-    nlp = spacy.load("en_core_web_sm")
-
-import streamlit as st   # type: ignore
-st.set_page_config(
-    page_title = "Smart Resume Analyzer",
-    page_icon='./Logo/SRA_Logo.ico',
-) 
-st.title("✅ Smart Resume Analyzer is Live!")
-st.write("If you're seeing this, your Streamlit app is working fine.")
+with st.spinner("Loading models..."):
+    # heavy setup
+    import spacy
+    from spacy.cli import download
+    try:
+        nlp = spacy.load("en_core_web_sm")
+    except OSError:
+        download("en_core_web_sm")
+        nlp = spacy.load("en_core_web_sm")
+import streamlit as st
+st.set_page_config(page_title="Smart Resume Analyzer")
+st.title("✅ App is loading... Please wait.")
 import pytesseract # type: ignore
 from pdf2image import convert_from_path # type: ignore
 import email
